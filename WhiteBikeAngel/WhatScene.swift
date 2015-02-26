@@ -47,8 +47,8 @@ class WhatScene: SKScene {
         
         howToPlayImage = SKSpriteNode(imageNamed: "HowTo")
         howToPlayImage.position = CGPointMake(self.size.width * 0.5, self.size.height * 0.5)
-        howToPlayImage.xScale = 4.2
-        howToPlayImage.yScale = 4.0
+        howToPlayImage.xScale = 2.2
+        howToPlayImage.yScale = 2.0
         self.addChild(howToPlayImage)
     }
     

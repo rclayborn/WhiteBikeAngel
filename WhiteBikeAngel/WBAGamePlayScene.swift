@@ -8,6 +8,7 @@
 
 import Foundation
 import SpriteKit
+import GameKit
 
 extension CGFloat {
     static func random() -> CGFloat {
@@ -27,7 +28,8 @@ let baseCategory: UInt32 = 0x1 << 24
 
  class WBAGamePlayScene: SKScene, SKPhysicsContactDelegate {
     
-    var score = CGFloat()
+    //var score = CGFloat()
+    var score = Int64()
     var health = Double()
     var maxHealth = Float()
     let healthMeterLabel = SKLabelNode(fontNamed:"Arial")
@@ -465,7 +467,10 @@ func createRoad() {
 //        currentTime = 0.0
 //        startTime = 0.0
 //        elapsedTime = 0.0
-//        
+        
+      //send score to GameViewController
+        submitScoreToGameCenter()
+        
         car.removeActionForKey("spawnEnemy")
         bottle.removeActionForKey("spawnWaterBottle")
         health = 0
@@ -481,6 +486,23 @@ func createRoad() {
         self.runAction(sequence)
     }
     
+    func submitScoreToGameCenter() {
+        
+        var leaderboardID = "WBA_Leader_board"
+        var sScore = GKScore(leaderboardIdentifier: leaderboardID)
+        sScore.value = Int64(score)
+        
+        let localPlayer: GKLocalPlayer = GKLocalPlayer.localPlayer()
+        
+        GKScore.reportScores([sScore], withCompletionHandler: { (error: NSError!) -> Void in
+            if error != nil {
+                println(error.localizedDescription)
+            } else {
+                println("Score submitted")
+            }
+        })
+    }
+
     func winMenu() {
         self.enumerateChildNodesWithName("Skull", usingBlock: {
         node, stop in
@@ -488,6 +510,8 @@ func createRoad() {
         })
         car.removeFromParent()
         bottle.removeFromParent()
+        
+        submitScoreToGameCenter()
         //println("Winner!")
         let wait = SKAction.waitForDuration(0.1)
         let block = SKAction.runBlock {

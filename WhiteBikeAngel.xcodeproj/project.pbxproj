@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		706727AB1A9EA28200E5F175 /* GameKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 706727AA1A9EA28200E5F175 /* GameKit.framework */; };
 		7090D5A01A8BE98D00E8AA7C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7090D59F1A8BE98D00E8AA7C /* AppDelegate.swift */; };
 		7090D5A61A8BE98D00E8AA7C /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7090D5A51A8BE98D00E8AA7C /* GameViewController.swift */; };
 		7090D5A91A8BE98D00E8AA7C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7090D5A71A8BE98D00E8AA7C /* Main.storyboard */; };
@@ -41,7 +42,6 @@
 		70C362EF1A9855CA00E0626D /* GameOver.wav in Resources */ = {isa = PBXBuildFile; fileRef = 70C362EE1A9855CA00E0626D /* GameOver.wav */; };
 		70D7EC241A95004400DC70EC /* BubbleMenuButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70D7EC1F1A95004400DC70EC /* BubbleMenuButton.swift */; };
 		70D7EC251A95004400DC70EC /* FirstScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70D7EC201A95004400DC70EC /* FirstScene.swift */; };
-		70D7EC261A95004400DC70EC /* WhoScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70D7EC211A95004400DC70EC /* WhoScene.swift */; };
 		70D7EC271A95004400DC70EC /* WhatScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70D7EC221A95004400DC70EC /* WhatScene.swift */; };
 		70D7EC281A95004400DC70EC /* WhyScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70D7EC231A95004400DC70EC /* WhyScene.swift */; };
 		70D7EC2A1A95026D00DC70EC /* pop.wav in Resources */ = {isa = PBXBuildFile; fileRef = 70D7EC291A95026D00DC70EC /* pop.wav */; };
@@ -63,6 +63,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		706727AA1A9EA28200E5F175 /* GameKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GameKit.framework; path = System/Library/Frameworks/GameKit.framework; sourceTree = SDKROOT; };
 		7090D59A1A8BE98D00E8AA7C /* WhiteBikeAngel.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WhiteBikeAngel.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7090D59E1A8BE98D00E8AA7C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		7090D59F1A8BE98D00E8AA7C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -101,7 +102,6 @@
 		70C362EE1A9855CA00E0626D /* GameOver.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = GameOver.wav; sourceTree = "<group>"; };
 		70D7EC1F1A95004400DC70EC /* BubbleMenuButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BubbleMenuButton.swift; sourceTree = "<group>"; };
 		70D7EC201A95004400DC70EC /* FirstScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FirstScene.swift; sourceTree = "<group>"; };
-		70D7EC211A95004400DC70EC /* WhoScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WhoScene.swift; sourceTree = "<group>"; };
 		70D7EC221A95004400DC70EC /* WhatScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WhatScene.swift; sourceTree = "<group>"; };
 		70D7EC231A95004400DC70EC /* WhyScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WhyScene.swift; sourceTree = "<group>"; };
 		70D7EC291A95026D00DC70EC /* pop.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = pop.wav; sourceTree = "<group>"; };
@@ -118,6 +118,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				706727AB1A9EA28200E5F175 /* GameKit.framework in Frameworks */,
 				70D8BC5E1A9A951400ABA074 /* iAd.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -135,6 +136,7 @@
 		7090D5911A8BE98C00E8AA7C = {
 			isa = PBXGroup;
 			children = (
+				706727AA1A9EA28200E5F175 /* GameKit.framework */,
 				70D8BC5D1A9A951400ABA074 /* iAd.framework */,
 				7090D59C1A8BE98D00E8AA7C /* WhiteBikeAngel */,
 				7090D5B61A8BE98D00E8AA7C /* WhiteBikeAngelTests */,
@@ -232,7 +234,6 @@
 			children = (
 				70D7EC1F1A95004400DC70EC /* BubbleMenuButton.swift */,
 				70D7EC201A95004400DC70EC /* FirstScene.swift */,
-				70D7EC211A95004400DC70EC /* WhoScene.swift */,
 				70D7EC221A95004400DC70EC /* WhatScene.swift */,
 				70D7EC231A95004400DC70EC /* WhyScene.swift */,
 			);
@@ -388,7 +389,6 @@
 				70B2D34F1A946382007DDBE5 /* HowToScene.swift in Sources */,
 				70D7EC2C1A95028A00DC70EC /* SKTAudio.swift in Sources */,
 				7090D5A01A8BE98D00E8AA7C /* AppDelegate.swift in Sources */,
-				70D7EC261A95004400DC70EC /* WhoScene.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

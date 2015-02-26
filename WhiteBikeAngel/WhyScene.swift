@@ -8,6 +8,7 @@
 
 import Foundation
 import SpriteKit
+import GameKit
 
 class WhyScene: SKScene {
     
@@ -16,38 +17,37 @@ class WhyScene: SKScene {
     var line3A = SKLabelNode()
     var line4 = SKLabelNode()
     var line5 = SKLabelNode()
-    var line6 = SKLabelNode()
     
     override func didMoveToView(view: SKView) {
          let π = CGFloat(M_PI)
         backgroundColor = SKColor.darkGrayColor()
         
-        let myL = SKLabelNode(fontNamed: "Arial-BoldMT")
-        myL.text = "White Bike Angel"
-        myL.fontColor = SKColor.blackColor()
-        myL.position = CGPointMake(self.size.width * 0.5, self.size.height * 0.3)
-        myL.fontSize = 160
-        myL.zPosition = 0
-        myL.xScale = 0.0
-        myL.yScale = 0.0
-        addChild(myL)
-        
-        let appear = SKAction.scaleTo(1.0, duration: 0.2)
-        myL.zRotation = -π / 16.0
-        let leftWiggle = SKAction.rotateByAngle(π/8.0, duration: 0.5)
-        let rightWiggle = leftWiggle.reversedAction()
-        let fullWiggle = SKAction.sequence([leftWiggle, rightWiggle])
-        let scaleUp = SKAction.scaleBy(1.2, duration: 0.25)
-        let scaleDown = scaleUp.reversedAction()
-        let fullScale = SKAction.sequence(
-            [scaleUp, scaleDown, scaleUp, scaleDown])
-        let group = SKAction.group([fullScale, fullWiggle])
-        let groupWait = SKAction.repeatAction(group, count: 3)
-
-        let disappear = SKAction.scaleTo(0, duration: 0.1)
-        let removeFromParent = SKAction.removeFromParent()
-        let actions = [appear, groupWait, disappear, removeFromParent]
-        myL.runAction(SKAction.sequence(actions))
+//        let myL = SKLabelNode(fontNamed: "Arial-BoldMT")
+//        myL.text = "White Bike Angel"
+//        myL.fontColor = SKColor.blackColor()
+//        myL.position = CGPointMake(self.size.width * 0.5, self.size.height * 0.3)
+//        myL.fontSize = 160
+//        myL.zPosition = 0
+//        myL.xScale = 0.0
+//        myL.yScale = 0.0
+//        addChild(myL)
+//        
+//        let appear = SKAction.scaleTo(1.0, duration: 0.2)
+//        myL.zRotation = -π / 16.0
+//        let leftWiggle = SKAction.rotateByAngle(π/8.0, duration: 0.5)
+//        let rightWiggle = leftWiggle.reversedAction()
+//        let fullWiggle = SKAction.sequence([leftWiggle, rightWiggle])
+//        let scaleUp = SKAction.scaleBy(1.2, duration: 0.25)
+//        let scaleDown = scaleUp.reversedAction()
+//        let fullScale = SKAction.sequence(
+//            [scaleUp, scaleDown, scaleUp, scaleDown])
+//        let group = SKAction.group([fullScale, fullWiggle])
+//        let groupWait = SKAction.repeatAction(group, count: 3)
+//
+//        let disappear = SKAction.scaleTo(0, duration: 0.1)
+//        let removeFromParent = SKAction.removeFromParent()
+//        let actions = [appear, groupWait, disappear, removeFromParent]
+//        myL.runAction(SKAction.sequence(actions))
         
         let line1 = SKLabelNode(fontNamed: "Arial-BoldMT")
         line1.text = "Why?"
@@ -92,12 +92,27 @@ class WhyScene: SKScene {
         line5.alpha = 0.7
         addChild(line5)
         
-        line6 = SKLabelNode(fontNamed: "Arial-BoldMT")
-        line6.text = "GameCenter!"
-        line6.position = CGPointMake(self.size.width * 0.5, self.size.height * 0.75 - 475)
-        line6.fontSize = 100
-        line6.alpha = 0.8
-        addChild(line6)
+        let line7 = SKLabelNode(fontNamed: "Arial-BoldMT")
+        line7.text = "All programing and art work created by:"
+        line7.position = CGPointMake(self.size.width * 0.5, self.size.height * 0.75 - 450)
+        line7.fontSize = 50
+        line7.alpha = 0.7
+        addChild(line7)
+        
+        let line8 = SKLabelNode(fontNamed: "Arial-BoldMT")
+        line8.text = "Randall Clayborn"
+        line8.position = CGPointMake(self.size.width * 0.5, self.size.height * 0.75 - 550)
+        line8.fontSize = 50
+        line8.alpha = 0.7
+        addChild(line8)
+        
+        let line9 = SKLabelNode(fontNamed: "Arial-BoldMT")
+        line9.text = "Thanks to Red Dogzilla and Major Pain"
+        line9.position = CGPointMake(self.size.width * 0.5, self.size.height * 0.75 - 650)
+        line9.fontSize = 50
+        line9.alpha = 0.7
+        addChild(line9)
+
     }
     
     override func touchesBegan(touches: NSSet, withEvent event: UIEvent) {
@@ -137,11 +152,6 @@ class WhyScene: SKScene {
               //  self.runAction(popSound)
                  UIApplication.sharedApplication().openURL(NSURL(string: "https://itunes.apple.com/us/artist/randall-clayborn/id704631046")!)
             }
-            if (CGRectContainsPoint(line6.frame, touchLocation)) {
-                //  self.runAction(popSound)
-                println("call game Center")
-            }
-
         }
     }
 
