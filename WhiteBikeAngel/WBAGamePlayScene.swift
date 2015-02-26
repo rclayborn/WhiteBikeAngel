@@ -9,6 +9,7 @@
 import Foundation
 import SpriteKit
 import GameKit
+import iAd
 
 extension CGFloat {
     static func random() -> CGFloat {
@@ -26,7 +27,7 @@ let dummyCategory: UInt32 = 0x1 << 8
 let skullCategory: UInt32 = 0x1 << 16
 let baseCategory: UInt32 = 0x1 << 24
 
- class WBAGamePlayScene: SKScene, SKPhysicsContactDelegate {
+ class WBAGamePlayScene: SKScene, SKPhysicsContactDelegate, ADBannerViewDelegate {
     
     //var score = CGFloat()
     var score = Int64()
@@ -66,6 +67,7 @@ let baseCategory: UInt32 = 0x1 << 24
     var startTime = 0.0
     var elapsedTime = 0.0
     var timeRemaining = 0
+
     
         override init(size: CGSize) {
         let maxAspectRatio:CGFloat = 16.0/9.0
@@ -98,7 +100,6 @@ let baseCategory: UInt32 = 0x1 << 24
         backgroundColor = SKColor.blackColor()
         self.paused = false
         self.physicsWorld.contactDelegate = self
-        self.physicsWorld.gravity = CGVectorMake(-0, -5)
         //self.userInteractionEnabled = true
 
         health = 100
@@ -108,7 +109,7 @@ let baseCategory: UInt32 = 0x1 << 24
         levelTimeLimit = 60
         
         //Setup physic
-        self.physicsWorld.gravity = CGVectorMake(0.0, -2.5);
+        self.physicsWorld.gravity = CGVectorMake(0.0, -4.0);
         
         //create Begin Label to start spawning and timer.
         beginLabel = SKLabelNode(fontNamed: "CopperPlate")
@@ -155,11 +156,11 @@ let baseCategory: UInt32 = 0x1 << 24
             sprite.anchorPoint = CGPointMake(0.5, 0.4)
             self.addChild(sprite)
         }
-        //this method helps keep player in playble area on scene.
+        //this method helps keep player in playble area on scene.un-commnet debug to see it.
         var dummy = SKNode()
         dummy.position = CGPointMake(self.size.width * 0.0, self.size.height * 0.0)
         dummy.physicsBody = SKPhysicsBody(edgeLoopFromRect: playableRect)
-        dummy.physicsBody?.restitution = 0.7
+        dummy.physicsBody?.restitution = 0.5
         dummy.physicsBody?.categoryBitMask = dummyCategory
         dummy.physicsBody?.collisionBitMask = playerCategory
         self.addChild(dummy)
@@ -167,7 +168,7 @@ let baseCategory: UInt32 = 0x1 << 24
         var base = SKNode()//this is the road base for the car and skull.
         base.position = CGPointMake(self.size.width * 0.0, self.size.height * 0.0)
         base.physicsBody = SKPhysicsBody(edgeFromPoint: CGPoint(x: 0,y: 220), toPoint: CGPoint(x: 2500,y: 220))
-        base.physicsBody?.restitution = 0.7
+        base.physicsBody?.restitution = 0.6
         base.physicsBody?.categoryBitMask = baseCategory
         base.physicsBody?.collisionBitMask = playerCategory | carCategory
         self.addChild(base)
@@ -179,8 +180,6 @@ let baseCategory: UInt32 = 0x1 << 24
     }
     
     func beginButton() {
-        
-       // inPlay = true
         beginLabel.setScale(0.0)
         startTime = currentTime
         beginGamePlay()
@@ -230,14 +229,13 @@ let baseCategory: UInt32 = 0x1 << 24
         scoreLabel.position = CGPointMake(self.size.width * 0.8, self.size.height * 0.83);
         scoreLabel.zPosition = 901
         self.addChild(scoreLabel)
-
     }
     
     func spawnWaterBottle() {
         // create bottle.
         //println("waterBottle has been spawned")
         var bottle = SKSpriteNode(imageNamed: "bottle")
-        bottle.position = CGPointMake(self.size.width * 0.08, self.size.height * 0.84)
+        bottle.position = CGPointMake(self.size.width * 0.095, self.size.height * 0.82)
         bottle.xScale = 1.0
         bottle.yScale = 1.0
         bottle.zPosition = 301
@@ -303,7 +301,6 @@ let baseCategory: UInt32 = 0x1 << 24
                     //runSound
                 let colorChange2 = SKAction.colorizeWithColor(SKColor.blueColor(), colorBlendFactor: 0.2, duration: 0.2)
                 self.player.runAction(colorChange2)
-
         }
   }
     
@@ -359,6 +356,7 @@ let baseCategory: UInt32 = 0x1 << 24
         skull.physicsBody?.dynamic = true
         skull.physicsBody?.allowsRotation = true
         skull.physicsBody?.restitution = 1.3
+        skull.physicsBody?.mass = 500
         skull.physicsBody?.categoryBitMask = skullCategory
         skull.physicsBody?.collisionBitMask = carCategory | playerCategory | baseCategory
         self.addChild(skull)
@@ -385,16 +383,13 @@ func createRoad() {
         for touch in touches {
             let touchLocation = touch.locationInNode(self)
             if (CGRectContainsPoint(frame, touchLocation)) {
-            player.physicsBody?.velocity = CGVectorMake(0, 0)
-            player.physicsBody?.applyImpulse(CGVectorMake(-10, 270))
             if (gameOver == true) {
                 beginButton()
             } else{
                 //moveplayer()
                 self.player.paused = false
-                //self.player.flying = true
                 //self.player.accelerating = true
-               // player.notFlying = false
+                inflight = true
             }
         }
     }
@@ -402,25 +397,34 @@ func createRoad() {
     
     override func touchesEnded(touches: NSSet, withEvent event: UIEvent) {
             
-        stopMovingPlayer()
+        //stopMovingPlayer()
         gameOver = false
         player.paused = true
-       // self.player.accelerating = false
-        //player.flying = false
-        //player.notFlying = true
+    inflight = false
     }
 
     func moveplayer() {
-        player.physicsBody?.velocity = CGVectorMake(-1, 0)
-        player.physicsBody?.applyImpulse(CGVectorMake(0, 350))
+        if (self.flying) {
+       player.physicsBody?.velocity = CGVectorMake(0, 0)
+        player.physicsBody?.applyForce(CGVectorMake(10, 750))
+        } else {
+            //stopMovingPlayer()
+        }
     }
     
-    func stopMovingPlayer() {
-        player.physicsBody?.velocity = CGVectorMake(0, 0)
-        player.physicsBody?.applyImpulse(CGVectorMake(0, 0))
-    }
+//    func stopMovingPlayer() {
+//       player.physicsBody?.velocity = CGVectorMake(0, 0)
+//        player.physicsBody?.applyForce(CGVectorMake(10, 0))
+//    }
     
     override func update(currentTime: CFTimeInterval) {
+        if (self.inflight) {
+            self.player.physicsBody?.applyForce(CGVectorMake(-10, 300))
+            }else{
+           
+                [self.player.removeAllActions];
+            }
+        
         //setting up timer.
         self.currentTime = currentTime
         elapsedTime = currentTime - startTime
@@ -546,13 +550,13 @@ func createRoad() {
             
             //setup physic body
             player.physicsBody = SKPhysicsBody(circleOfRadius: player.size.width * 0.5)
-            player.physicsBody?.mass = 0.6
+            player.physicsBody?.mass = 0.2
             player.physicsBody?.dynamic = true
             player.physicsBody?.allowsRotation = false
             player.physicsBody?.affectedByGravity = true
-            player.physicsBody?.restitution = 0.8;
+            player.physicsBody?.restitution = 0.5;
             player.physicsBody?.categoryBitMask = playerCategory
-            player.physicsBody?.collisionBitMask = carCategory | dummyCategory
+            player.physicsBody?.collisionBitMask = carCategory | dummyCategory | skullCategory
             player.physicsBody?.contactTestBitMask = carCategory | roadCategory | waterBottleCategory
             self.addChild(player)
             

@@ -66,9 +66,9 @@ class WhatScene: SKScene {
 }
 
         func playScene() {
-                let wait = SKAction.waitForDuration(0.3)
+                let wait = SKAction.waitForDuration(0.2)
                 let block = SKAction.runBlock {
-                    let transition = SKTransition.flipHorizontalWithDuration(2.0)
+                    let transition = SKTransition.flipHorizontalWithDuration(1.5)
                     let scene = HowToScene(size: self.size)
                     scene.scaleMode = SKSceneScaleMode.AspectFill
                     self.view?.presentScene(scene, transition: transition)

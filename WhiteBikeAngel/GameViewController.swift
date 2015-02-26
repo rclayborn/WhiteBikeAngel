@@ -45,7 +45,7 @@ class GameViewController: UIViewController,  ADBannerViewDelegate, GKGameCenterC
             if((ViewController) != nil) {
                 self.presentViewController(ViewController, animated: true, completion: nil)
             } else if (localPlayer.authenticated) {
-                println("Local player already authenticated")
+                //println("Local player already authenticated")
                 self.gcEnabled = true
                 
                 // Get the default leaderboard ID

@@ -11,9 +11,6 @@ import SpriteKit
 
 class WBAPlayer: SKNode {
     //properties
-    var notFlying = Bool()
-    var flying = Bool()
-    var accelerating = Bool()
     var player = SKSpriteNode()
     let textureAtlas = SKTextureAtlas(named: "bike.atlas")
     var spriteArray = Array<SKTexture>()
@@ -45,8 +42,7 @@ class WBAPlayer: SKNode {
         let animateAction = SKAction.animateWithTextures(self.spriteArray, timePerFrame: 0.2);
         let repeatAction = SKAction.repeatActionForever(animateAction);
         player.runAction(repeatAction)
-        
-        flying = true
+
     }
     
     required init?(coder aDecoder: NSCoder) {
