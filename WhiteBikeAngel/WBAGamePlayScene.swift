@@ -71,29 +71,29 @@ let baseCategory: UInt32 = 0x1 << 24
         let maxAspectRatio:CGFloat = 16.0/9.0
         let playableHeight = size.width / maxAspectRatio
         let playableMargin = (size.height-playableHeight)/2.0
-        playableRect = CGRect(x: 0, y: playableMargin,
-        width: size.width,
+        playableRect = CGRect(x: 130, y: playableMargin,
+        width: size.width - 100,
         height: playableHeight)
             
         super.init(size: size)
-            debugDrawPlayableArea()
+            //debugDrawPlayableArea()
         }
         
         required init(coder aDecoder: NSCoder) {
             fatalError("init(coder:) has not been implemented")
         }
         
-        func debugDrawPlayableArea() {
-            let shape = SKShapeNode()
-            let path = CGPathCreateMutable()
-            CGPathAddRect(path, nil, playableRect)
-            shape.path = path
-            shape.strokeColor = SKColor.redColor()
-            shape.lineWidth = 4.0
-            shape.zPosition = 900
-            addChild(shape)
-        }
-        
+//        func debugDrawPlayableArea() {
+//            let shape = SKShapeNode()
+//            let path = CGPathCreateMutable()
+//            CGPathAddRect(path, nil, playableRect)
+//            shape.path = path
+//            shape.strokeColor = SKColor.redColor()
+//            shape.lineWidth = 4.0
+//            shape.zPosition = 900
+//            addChild(shape)
+//        }
+    
     override func didMoveToView(view: SKView) {
         backgroundColor = SKColor.blackColor()
         self.paused = false
@@ -105,7 +105,6 @@ let baseCategory: UInt32 = 0x1 << 24
         damageTakenPerShot = 12
         gameOver = true
         inflight = true
-       // inPlay = false
         levelTimeLimit = 60
         
         //Setup physic
@@ -236,7 +235,7 @@ let baseCategory: UInt32 = 0x1 << 24
     
     func spawnWaterBottle() {
         // create bottle.
-        println("waterBottle has been spawned")
+        //println("waterBottle has been spawned")
         var bottle = SKSpriteNode(imageNamed: "bottle")
         bottle.position = CGPointMake(self.size.width * 0.08, self.size.height * 0.84)
         bottle.xScale = 1.0
@@ -260,16 +259,18 @@ let baseCategory: UInt32 = 0x1 << 24
     
         func playerHitCar() {
            //take off lifes/health points here.
-            println("player Hit Car")
+           // println("player Hit Car")
             health -= 10
         }
         
         func playerHitBottle() {
+            let colorChange4 = SKAction.colorizeWithColor(SKColor.whiteColor(), colorBlendFactor: 1.0, duration: 0.1)
+            self.player.runAction(colorChange4)
             self.bottle.xScale = 0
             self.bottle.yScale = 0
-
+            self.player.alpha = 1.0
             //add + or - health.
-            println("player Hit Bottle")
+            //println("player Hit Bottle")
             if health >= 100 {
                  self.bottle.removeFromParent()
             } else {
@@ -280,8 +281,10 @@ let baseCategory: UInt32 = 0x1 << 24
     
         func playerHitRoad() {
            //add points to total score here.
-                println("player Hit Road")
+            //  println("player Hit Road")
             score += 25
+             let colorChangeWhite = SKAction.colorizeWithColor(SKColor.whiteColor(), colorBlendFactor: 1.0, duration: 0.1)
+             self.player.runAction(colorChangeWhite)
         }
     
         func didBeginContact (contact: SKPhysicsContact) {
@@ -298,20 +301,17 @@ let baseCategory: UInt32 = 0x1 << 24
             if collision == playerCategory | waterBottleCategory {
             playerHitBottle()
                     //runSound
+                let colorChange2 = SKAction.colorizeWithColor(SKColor.blueColor(), colorBlendFactor: 0.2, duration: 0.2)
+                self.player.runAction(colorChange2)
+
         }
   }
     
     func runDying() {
-            let colorchange = SKAction.colorizeWithColor(SKColor.redColor(), colorBlendFactor:1.0, duration: 0.3)
-            let blinkTimes = 10.0
-            let duration = 3.0
-            let blinkAction = SKAction.customActionWithDuration(duration) {
-            node, elapsedTime in
-            let slice = duration / blinkTimes
-            let remainder = Double(elapsedTime) % slice
-            node.hidden = remainder > slice / 2
-        }
-    self.player.runAction(SKAction.sequence([colorchange, blinkAction]))
+        let colorChange = SKAction.colorizeWithColor(SKColor.redColor(), colorBlendFactor:0.5, duration: 0.2)
+        let colorChange3 = SKAction.colorizeWithColor(SKColor.orangeColor(), colorBlendFactor: 0.5, duration: 0.2)
+        let colorChange4 = SKAction.colorizeWithColor(SKColor.whiteColor(), colorBlendFactor: 1.0, duration: 0.1)
+        self.player.runAction(SKAction.sequence([colorChange, colorChange3, colorChange4]))
     }
     
     override func didEvaluateActions()   {
@@ -431,7 +431,7 @@ func createRoad() {
             }
                 if elapsedTime <= levelTimeLimit && timeRemaining <= 1 {
                     winMenu()
-                    println("time is out")
+                    //println("time is out")
             }
                 if score >= 0 {
                     scoreLabel.text = "Score: \(score)"
@@ -439,12 +439,12 @@ func createRoad() {
                 if (gameOver == false && score >= 1000) {
                     winMenu()
                     //stop music
-                    println("You Win!")
+                    //println("You Win!")
             }
                 if (health <= 0) {
                     gameOverMenu()
                     //Stop music
-                    println("you lost")
+                   // println("you lost")
             }
         // update the color so that the closer to 0 it gets the more red it becomes
         healthMeterLabel.fontColor = SKColor(red: CGFloat(2.0 * (1 - self.health / 100)), green: CGFloat(2.0 * self.health / 100), blue: 0, alpha: 1)
@@ -459,15 +459,8 @@ func createRoad() {
     node, stop in
         node.removeFromParent()
     })
-//        player.removeFromParent()
        car.removeFromParent()
        bottle.removeFromParent()
-//        levelTimeLimit = 0.0
-//        timeLabel.removeFromParent()
-//        currentTime = 0.0
-//        startTime = 0.0
-//        elapsedTime = 0.0
-        
       //send score to GameViewController
         submitScoreToGameCenter()
         
@@ -498,7 +491,7 @@ func createRoad() {
             if error != nil {
                 println(error.localizedDescription)
             } else {
-                println("Score submitted")
+                //println("Score submitted")
             }
         })
     }

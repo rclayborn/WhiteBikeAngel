@@ -50,16 +50,6 @@ class WBAMainMenu: SKScene, ADBannerViewDelegate {
     angel!.xScale = 2.0
     angel!.yScale = 2.0
     self.addChild(angel!)
-    
-    // Create Play button.
-//    playButton = SKSpriteNode(imageNamed:"playButton")
-//    playButton.position = CGPointMake(self.size.width * 0.5, self.size.height * 0.2)
-//    self.addChild(playButton)
-    
-//    // Create multiplayer button.
-//    var levelButton = SKSpriteNode(imageNamed: "MultiPlayerButtonG")
-//    levelButton.position = CGPointMake(self.size.width * 0.5, self.size.height * 0.18)
-//    self.addChild(levelButton)
 
     }
     
@@ -69,7 +59,7 @@ class WBAMainMenu: SKScene, ADBannerViewDelegate {
         for touch in touches {
             let touchLocation = touch.locationInNode(self)
             if (CGRectContainsPoint(playButton.frame, touchLocation)) {
-                //call another method or do something here when ClosetDoor is touched.
+                //call another method or do something here.
                 playScene()
             }
         }

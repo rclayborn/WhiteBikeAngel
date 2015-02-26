@@ -75,7 +75,6 @@ class WhatScene: SKScene {
                 }
                 let sequence = SKAction.sequence([block, wait])
                 self.runAction(sequence)
-                
         }
 
 }

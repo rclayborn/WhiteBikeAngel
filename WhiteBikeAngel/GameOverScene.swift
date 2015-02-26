@@ -12,11 +12,9 @@ import SpriteKit
 let GameOverSound = SKAction.playSoundFileNamed("GameOver.wav", waitForCompletion: true)
 
 class GameOverScene: SKScene {
-    var points = Int()
     let won:Bool
-    var highScore = NSInteger()
-    var Score = HighScore()
-    var highScoreLabel = SKLabelNode()
+    var winLabel = SKLabelNode()
+    var endLabel = SKLabelNode()
 
     init(size: CGSize, won: Bool) {
     self.won = won
@@ -35,32 +33,19 @@ class GameOverScene: SKScene {
         var background = SKSpriteNode()
         var background2 = SKSpriteNode()
         
-        var retrievedHighScore = SaveHighScore().RetrieveHighScore() as HighScore
-        //println(retrievedHighScore.highScore)
-        highScore += 1
-        
-        if highScore >= 1 {
-            self.highScore + self.highScore
-            
-            SaveHighScore().ArchiveHighScore(highScore: self.Score)
-           // highScoreLabel.text = "High Score: \(self.highScore)"
-        }
-        
         if (won) {
-       // println("GameOver win")
-        var retrievedHighScore = SaveHighScore().RetrieveHighScore() as HighScore
-        println(retrievedHighScore.highScore)
-            
+            //create winner's scene then auto which to game play scene.
         background = SKSpriteNode(imageNamed: "won_image.png")
         background.position = CGPoint(x: self.size.width * 0.5, y: self.size.height * 0.46)
         self.addChild(background)
             
-            highScoreLabel = SKLabelNode(fontNamed: "Arial-BoldMT")
-            highScoreLabel.position = CGPointMake(self.size.width * 0.7, self.size.height * 0.1)
-            highScoreLabel.text = "You may it back from the dead: \(highScore)"
-            highScoreLabel.fontColor = SKColor.whiteColor()
-            highScoreLabel.fontSize = 40
-            addChild(highScoreLabel)
+            winLabel = SKLabelNode(fontNamed: "Arial-BoldMT")
+            winLabel.position = CGPointMake(self.size.width * 0.7, self.size.height * 0.7)
+            winLabel.text = "You may it back from the dead"
+            winLabel.fontColor = SKColor.whiteColor()
+            winLabel.alpha = 0.5
+            winLabel.fontSize = 40
+            addChild(winLabel)
             
             let wait = SKAction.waitForDuration(2.5)
             let block = SKAction.runBlock {
@@ -69,9 +54,11 @@ class GameOverScene: SKScene {
             let reveal = SKTransition.flipHorizontalWithDuration(0.5)
             self.view?.presentScene(myScene, transition: reveal)
         }
+            
         self.runAction(SKAction.sequence([wait, block]))
 }
       else  if (won == false) {
+             //create loser's scene then auto which to game play scene.
             runAction(GameOverSound)
         
             background2 = SKSpriteNode(imageNamed: "youLost.png")
@@ -80,6 +67,14 @@ class GameOverScene: SKScene {
                 background2.yScale = 0.75
             }
             self.addChild(background2)
+            
+            endLabel = SKLabelNode(fontNamed: "Arial-BoldMT")
+            endLabel.position = CGPointMake(self.size.width * 0.5, self.size.height * 0.83)
+            endLabel.text = "You will return to the game in one moment."
+            endLabel.fontColor = SKColor.whiteColor()
+            endLabel.alpha = 1.0
+            endLabel.fontSize = 40
+            addChild(endLabel)
             
             // Trans back to beginning of Game.
             let wait = SKAction.waitForDuration(2.5)
@@ -94,8 +89,6 @@ class GameOverScene: SKScene {
     }
     
    override func update(currentTime: CFTimeInterval) {
-    
-        highScoreLabel.text = "\(self.highScore)"
 
     }
     

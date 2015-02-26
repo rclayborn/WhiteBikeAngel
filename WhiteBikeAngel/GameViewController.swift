@@ -22,9 +22,9 @@ class GameViewController: UIViewController,  ADBannerViewDelegate, GKGameCenterC
         
     let scene = WBAMainMenu(size:CGSize(width: 2048, height: 1536))
     let skView = self.view as SKView
-    skView.showsFPS = true
-    skView.showsPhysics = true
-    skView.showsNodeCount = true
+    //skView.showsFPS = true
+    //skView.showsPhysics = true
+    //skView.showsNodeCount = true
     skView.ignoresSiblingOrder = true
     scene.scaleMode = .AspectFill
     skView.presentScene(scene)
@@ -57,7 +57,6 @@ class GameViewController: UIViewController,  ADBannerViewDelegate, GKGameCenterC
                     }
                 })
                 
-                
             } else {
                 self.gcEnabled = false
                 println("Local player could not be authenticated, disabling game center")
@@ -71,31 +70,13 @@ class GameViewController: UIViewController,  ADBannerViewDelegate, GKGameCenterC
         gameCenterViewController.dismissViewControllerAnimated(true, completion: nil)
     }
     
-    
     func showLeaderboard() {
         var gcVC: GKGameCenterViewController = GKGameCenterViewController()
         gcVC.gameCenterDelegate = self
         gcVC.viewState = GKGameCenterViewControllerState.Leaderboards
         gcVC.leaderboardIdentifier = "WBA_Leader_board"
         self.presentViewController(gcVC, animated: true, completion: nil)
-        
-    }
     
-    func submitScore(score: Int64) {
-       
-        var leaderboardID = "WBA_Leader_board"
-        var sScore = GKScore(leaderboardIdentifier: leaderboardID)
-        sScore.value = Int64(score)
-
-        let localPlayer: GKLocalPlayer = GKLocalPlayer.localPlayer()
-        
-        GKScore.reportScores([sScore], withCompletionHandler: { (error: NSError!) -> Void in
-            if error != nil {
-                println(error.localizedDescription)
-            } else {
-                println("Score submitted")
-            }
-        })
     }
     
     override func viewDidAppear(animated: Bool) {
@@ -139,7 +120,6 @@ class GameViewController: UIViewController,  ADBannerViewDelegate, GKGameCenterC
             button.clipsToBounds = true;
             button.tag = i++;
             button.addTarget(self, action: Selector("buttonTap:"), forControlEvents: UIControlEvents.TouchUpInside)
-            
             buttons.append(button)
         }
         return buttons
@@ -157,9 +137,7 @@ class GameViewController: UIViewController,  ADBannerViewDelegate, GKGameCenterC
     
     func buttonTap(sender:UIButton){
         
-        println("Button tapped, tag:\(sender.tag)")
-        
-        //Put code for touches here.
+        //println("Button tapped, tag:\(sender.tag)")
         if sender.tag == 0 {
             let scene = WBAGamePlayScene(size: CGSize(width: 2048, height: 1536))
             // Configure the view.
@@ -174,16 +152,6 @@ class GameViewController: UIViewController,  ADBannerViewDelegate, GKGameCenterC
         }
         if sender.tag == 1 {
             showLeaderboard()
-            //let scene = WhoScene(size: CGSize(width: 2048, height: 1536))
-            // Configure the view.
-            //let skView = self.view as SKView
-            //skView.showsFPS = true
-            //skView.showsNodeCount = true
-            /* Sprite Kit applies additional optimizations to improve rendering performance */
-            //skView.ignoresSiblingOrder = true
-            /* Set the scale mode to scale to fit the window */
-            //scene.scaleMode = .AspectFill
-            //skView.presentScene(scene)
         }
         if sender.tag == 2 {
             let scene = WhatScene(size: CGSize(width: 2048, height: 1536))
@@ -191,7 +159,6 @@ class GameViewController: UIViewController,  ADBannerViewDelegate, GKGameCenterC
             let skView = self.view as SKView
             //skView.showsFPS = true
             //skView.showsNodeCount = true
-            /* Sprite Kit applies additional optimizations to improve rendering performance */
             skView.ignoresSiblingOrder = true
             /* Set the scale mode to scale to fit the window */
             scene.scaleMode = .AspectFill
@@ -203,7 +170,6 @@ class GameViewController: UIViewController,  ADBannerViewDelegate, GKGameCenterC
             let skView = self.view as SKView
             //skView.showsFPS = true
             //skView.showsNodeCount = true
-            /* Sprite Kit applies additional optimizations to improve rendering performance */
             skView.ignoresSiblingOrder = true
             /* Set the scale mode to scale to fit the window */
             scene.scaleMode = .AspectFill
@@ -228,7 +194,7 @@ class GameViewController: UIViewController,  ADBannerViewDelegate, GKGameCenterC
         }
         
         tweetSheet.setInitialText("Test Twitter") //The default text in the tweet
-        tweetSheet.addImage(UIImage(named: "MOIcon57.png")) //Add an image if you like?
+        tweetSheet.addImage(UIImage(named: "bottle.png")) //Add an image if you like?
         tweetSheet.addURL(NSURL(string: "http://twitter.com")) //A url which takes you into safari if tapped on
         
         self.presentViewController(tweetSheet, animated: false, completion: {
@@ -253,7 +219,7 @@ class GameViewController: UIViewController,  ADBannerViewDelegate, GKGameCenterC
         }
         
         fbSheet.setInitialText("Test Facebook") //The default text in the tweet
-        fbSheet.addImage(UIImage(named: "MOIcon57.png")) //Add an image if you like?
+        fbSheet.addImage(UIImage(named: "bottle.png")) //Add an image if you like?
         fbSheet.addURL(NSURL(string: "http://facebook.com")) //A url which takes you into safari if tapped on
         
         self.presentViewController(fbSheet, animated: false, completion: {

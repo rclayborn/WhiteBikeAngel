@@ -16,8 +16,7 @@ enum ExpansionDirection:Int{
     case DirectionUp
     case DirectionDown
 }
-///----
-///DWBubbleMenuViewDelegate protocol
+
 protocol BubbleMenuViewDelegate:NSObjectProtocol{
     
     func bubbleMenuButtonWillExpand(expandableView:BubbleMenuButton)
@@ -26,7 +25,7 @@ protocol BubbleMenuViewDelegate:NSObjectProtocol{
     func bubbleMenuButtonDidCollapse(expandableView:BubbleMenuButton)
 }
 
-///DWBubbleMenuButton
+///BubbleMenuButton
 class BubbleMenuButton:UIView,UIGestureRecognizerDelegate{
     
     var tapGestureRecognizer:UITapGestureRecognizer!

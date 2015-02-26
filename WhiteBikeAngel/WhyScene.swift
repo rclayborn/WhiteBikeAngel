@@ -22,33 +22,6 @@ class WhyScene: SKScene {
          let π = CGFloat(M_PI)
         backgroundColor = SKColor.darkGrayColor()
         
-//        let myL = SKLabelNode(fontNamed: "Arial-BoldMT")
-//        myL.text = "White Bike Angel"
-//        myL.fontColor = SKColor.blackColor()
-//        myL.position = CGPointMake(self.size.width * 0.5, self.size.height * 0.3)
-//        myL.fontSize = 160
-//        myL.zPosition = 0
-//        myL.xScale = 0.0
-//        myL.yScale = 0.0
-//        addChild(myL)
-//        
-//        let appear = SKAction.scaleTo(1.0, duration: 0.2)
-//        myL.zRotation = -π / 16.0
-//        let leftWiggle = SKAction.rotateByAngle(π/8.0, duration: 0.5)
-//        let rightWiggle = leftWiggle.reversedAction()
-//        let fullWiggle = SKAction.sequence([leftWiggle, rightWiggle])
-//        let scaleUp = SKAction.scaleBy(1.2, duration: 0.25)
-//        let scaleDown = scaleUp.reversedAction()
-//        let fullScale = SKAction.sequence(
-//            [scaleUp, scaleDown, scaleUp, scaleDown])
-//        let group = SKAction.group([fullScale, fullWiggle])
-//        let groupWait = SKAction.repeatAction(group, count: 3)
-//
-//        let disappear = SKAction.scaleTo(0, duration: 0.1)
-//        let removeFromParent = SKAction.removeFromParent()
-//        let actions = [appear, groupWait, disappear, removeFromParent]
-//        myL.runAction(SKAction.sequence(actions))
-        
         let line1 = SKLabelNode(fontNamed: "Arial-BoldMT")
         line1.text = "Why?"
         line1.position = CGPointMake(self.size.width * 0.5, self.size.height * 0.75 + 40)

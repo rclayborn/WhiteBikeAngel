@@ -9,13 +9,6 @@
 import Foundation
 import SpriteKit
 
-//typedef enum : NSUInteger {
-//    Running,
-//    Jumping,
-//    Hurt,
-//} PlayerState;
-
-
 class WBAPlayer: SKNode {
     //properties
     var notFlying = Bool()
@@ -24,7 +17,6 @@ class WBAPlayer: SKNode {
     var player = SKSpriteNode()
     let textureAtlas = SKTextureAtlas(named: "bike.atlas")
     var spriteArray = Array<SKTexture>()
-    
     
     override init () {
         super.init()
@@ -61,22 +53,7 @@ class WBAPlayer: SKNode {
         fatalError("init(coder:) has not been implemented")
     }
 
-//func flying(flying: Bool) {
-//    if (self.flying) {
-//        self.actionForKey("kkeyBikeAnimation")
-//    }
-//}
-//
-//func notFlying(notFlying: Bool) {
-//    self.actionForKey("kkeyBikeAnimation")
-//    self.removeActionForKey("kkeyBikeAnimation")
-//}
-
 func update()  {
-        if (self.flying) {
-            player.physicsBody?.velocity = CGVectorMake(0, 0)
-            player.physicsBody?.applyForce(CGVectorMake(0, 900))
-        }
-    
+    //happens every frame.
     }
 }
