@@ -8,8 +8,9 @@
 
 import Foundation
 import SpriteKit
+import iAd
 
-class WBAMainMenu: SKScene {
+class WBAMainMenu: SKScene, ADBannerViewDelegate {
    //properities
     var howToPlay = SKSpriteNode()
     var credits = SKSpriteNode()
@@ -46,12 +47,14 @@ class WBAMainMenu: SKScene {
     // Setup angel.
     angel = WBAPlayer()
     angel!.position = CGPointMake(self.size.width * 0.5, self.size.height * 1.11)
+    angel!.xScale = 2.0
+    angel!.yScale = 2.0
     self.addChild(angel!)
     
     // Create Play button.
-    playButton = SKSpriteNode(imageNamed:"playButton")
-    playButton.position = CGPointMake(self.size.width * 0.5, self.size.height * 0.2)
-    self.addChild(playButton)
+//    playButton = SKSpriteNode(imageNamed:"playButton")
+//    playButton.position = CGPointMake(self.size.width * 0.5, self.size.height * 0.2)
+//    self.addChild(playButton)
     
 //    // Create multiplayer button.
 //    var levelButton = SKSpriteNode(imageNamed: "MultiPlayerButtonG")
@@ -74,14 +77,14 @@ class WBAMainMenu: SKScene {
     
     func playScene() {
         let wait = SKAction.waitForDuration(1.0)
-let block = SKAction.runBlock {
-    let transition = SKTransition.flipHorizontalWithDuration(1.0)
-    let scene = WBAGamePlayScene(size: self.size)
-    scene.scaleMode = SKSceneScaleMode.AspectFill
-    self.view?.presentScene(scene, transition: transition)
-}
-let sequence = SKAction.sequence([block, wait])
-self.runAction(sequence)
+        let block = SKAction.runBlock {
+            let transition = SKTransition.flipHorizontalWithDuration(1.0)
+            let scene = WBAGamePlayScene(size: self.size)
+            scene.scaleMode = SKSceneScaleMode.AspectFill
+            self.view?.presentScene(scene, transition: transition)
+    }
+        let sequence = SKAction.sequence([block, wait])
+        self.runAction(sequence)
 
     }
 }

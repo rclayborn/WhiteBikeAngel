@@ -21,7 +21,7 @@ class WhatScene: SKScene {
         let myL = SKLabelNode(fontNamed: "Arial-BoldMT")
         myL.text = "Tap for More"
         myL.fontColor = SKColor.whiteColor()
-        myL.position = CGPointMake(self.size.width * 0.5, self.size.height * 0.16)
+        myL.position = CGPointMake(self.size.width * 0.5, self.size.height * 0.22)
         myL.fontSize = 50
         myL.zPosition = 0
         myL.xScale = 0.0
@@ -45,10 +45,10 @@ class WhatScene: SKScene {
         let actions = [appear, groupWait, disappear, removeFromParent]
         myL.runAction(SKAction.sequence(actions))
         
-        howToPlayImage = SKSpriteNode(imageNamed: "howTo")
+        howToPlayImage = SKSpriteNode(imageNamed: "HowTo")
         howToPlayImage.position = CGPointMake(self.size.width * 0.5, self.size.height * 0.5)
-        howToPlayImage.xScale = 2.0
-        howToPlayImage.yScale = 2.0
+        howToPlayImage.xScale = 4.2
+        howToPlayImage.yScale = 4.0
         self.addChild(howToPlayImage)
     }
     

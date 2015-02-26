@@ -13,7 +13,6 @@
 		7090D5AB1A8BE98D00E8AA7C /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7090D5AA1A8BE98D00E8AA7C /* Images.xcassets */; };
 		7090D5AE1A8BE98D00E8AA7C /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7090D5AC1A8BE98D00E8AA7C /* LaunchScreen.xib */; };
 		7090D5BA1A8BE98D00E8AA7C /* WhiteBikeAngelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7090D5B91A8BE98D00E8AA7C /* WhiteBikeAngelTests.swift */; };
-		7090D5C41A8BE9FE00E8AA7C /* whitebikeMenu.atlas in Resources */ = {isa = PBXBuildFile; fileRef = 7090D5C31A8BE9FE00E8AA7C /* whitebikeMenu.atlas */; };
 		7090D5C61A8BEA0A00E8AA7C /* bike.atlas in Resources */ = {isa = PBXBuildFile; fileRef = 7090D5C51A8BEA0A00E8AA7C /* bike.atlas */; };
 		7090D5D81A8BEA3800E8AA7C /* Bike1.png in Resources */ = {isa = PBXBuildFile; fileRef = 7090D5C71A8BEA3800E8AA7C /* Bike1.png */; };
 		7090D5D91A8BEA3800E8AA7C /* Bike2.png in Resources */ = {isa = PBXBuildFile; fileRef = 7090D5C81A8BEA3800E8AA7C /* Bike2.png */; };
@@ -34,16 +33,12 @@
 		70B2D3351A943A62007DDBE5 /* WhiteBikemenu.png in Resources */ = {isa = PBXBuildFile; fileRef = 70B2D3341A943A62007DDBE5 /* WhiteBikemenu.png */; };
 		70B2D3391A943F12007DDBE5 /* WBAGamePlayScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70B2D3381A943F12007DDBE5 /* WBAGamePlayScene.swift */; };
 		70B2D34B1A946185007DDBE5 /* playButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 70B2D34A1A946185007DDBE5 /* playButton.png */; };
-		70B2D34D1A94618D007DDBE5 /* MultiplayerButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 70B2D34C1A94618D007DDBE5 /* MultiplayerButton.png */; };
 		70B2D34F1A946382007DDBE5 /* HowToScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70B2D34E1A946382007DDBE5 /* HowToScene.swift */; };
 		70C362E51A97A06900E0626D /* blackSky.png in Resources */ = {isa = PBXBuildFile; fileRef = 70C362E41A97A06900E0626D /* blackSky.png */; };
 		70C362E71A98360700E0626D /* GameOverScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70C362E61A98360700E0626D /* GameOverScene.swift */; };
 		70C362E91A98363100E0626D /* HighScore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70C362E81A98363100E0626D /* HighScore.swift */; };
-		70C362EB1A984EC200E0626D /* youWon.png in Resources */ = {isa = PBXBuildFile; fileRef = 70C362EA1A984EC200E0626D /* youWon.png */; };
 		70C362ED1A9853F000E0626D /* youLost.png in Resources */ = {isa = PBXBuildFile; fileRef = 70C362EC1A9853F000E0626D /* youLost.png */; };
 		70C362EF1A9855CA00E0626D /* GameOver.wav in Resources */ = {isa = PBXBuildFile; fileRef = 70C362EE1A9855CA00E0626D /* GameOver.wav */; };
-		70D7EC191A94FF5A00DC70EC /* MultiplayerButtonG.png in Resources */ = {isa = PBXBuildFile; fileRef = 70D7EC181A94FF5A00DC70EC /* MultiplayerButtonG.png */; };
-		70D7EC1B1A94FF5E00DC70EC /* playButtonG.png in Resources */ = {isa = PBXBuildFile; fileRef = 70D7EC1A1A94FF5E00DC70EC /* playButtonG.png */; };
 		70D7EC241A95004400DC70EC /* BubbleMenuButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70D7EC1F1A95004400DC70EC /* BubbleMenuButton.swift */; };
 		70D7EC251A95004400DC70EC /* FirstScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70D7EC201A95004400DC70EC /* FirstScene.swift */; };
 		70D7EC261A95004400DC70EC /* WhoScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70D7EC211A95004400DC70EC /* WhoScene.swift */; };
@@ -52,6 +47,9 @@
 		70D7EC2A1A95026D00DC70EC /* pop.wav in Resources */ = {isa = PBXBuildFile; fileRef = 70D7EC291A95026D00DC70EC /* pop.wav */; };
 		70D7EC2C1A95028A00DC70EC /* SKTAudio.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70D7EC2B1A95028A00DC70EC /* SKTAudio.swift */; };
 		70D7EC2F1A9533BC00DC70EC /* whiteBikeSong1.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 70D7EC2E1A9533BC00DC70EC /* whiteBikeSong1.mp3 */; };
+		70D8BC5C1A9A8B8200ABA074 /* won_image.png in Resources */ = {isa = PBXBuildFile; fileRef = 70D8BC5B1A9A8B8200ABA074 /* won_image.png */; };
+		70D8BC5E1A9A951400ABA074 /* iAd.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 70D8BC5D1A9A951400ABA074 /* iAd.framework */; };
+		70D8BC601A9A96B100ABA074 /* Global_iAd.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70D8BC5F1A9A96B100ABA074 /* Global_iAd.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -75,7 +73,6 @@
 		7090D5B31A8BE98D00E8AA7C /* WhiteBikeAngelTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WhiteBikeAngelTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		7090D5B81A8BE98D00E8AA7C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		7090D5B91A8BE98D00E8AA7C /* WhiteBikeAngelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WhiteBikeAngelTests.swift; sourceTree = "<group>"; };
-		7090D5C31A8BE9FE00E8AA7C /* whitebikeMenu.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = whitebikeMenu.atlas; sourceTree = "<group>"; };
 		7090D5C51A8BEA0A00E8AA7C /* bike.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = bike.atlas; sourceTree = "<group>"; };
 		7090D5C71A8BEA3800E8AA7C /* Bike1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Bike1.png; sourceTree = "<group>"; };
 		7090D5C81A8BEA3800E8AA7C /* Bike2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Bike2.png; sourceTree = "<group>"; };
@@ -96,16 +93,12 @@
 		70B2D3341A943A62007DDBE5 /* WhiteBikemenu.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = WhiteBikemenu.png; sourceTree = "<group>"; };
 		70B2D3381A943F12007DDBE5 /* WBAGamePlayScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WBAGamePlayScene.swift; sourceTree = "<group>"; };
 		70B2D34A1A946185007DDBE5 /* playButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = playButton.png; sourceTree = "<group>"; };
-		70B2D34C1A94618D007DDBE5 /* MultiplayerButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = MultiplayerButton.png; sourceTree = "<group>"; };
 		70B2D34E1A946382007DDBE5 /* HowToScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HowToScene.swift; sourceTree = "<group>"; };
 		70C362E41A97A06900E0626D /* blackSky.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = blackSky.png; sourceTree = "<group>"; };
 		70C362E61A98360700E0626D /* GameOverScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameOverScene.swift; sourceTree = "<group>"; };
 		70C362E81A98363100E0626D /* HighScore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HighScore.swift; sourceTree = "<group>"; };
-		70C362EA1A984EC200E0626D /* youWon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = youWon.png; sourceTree = "<group>"; };
 		70C362EC1A9853F000E0626D /* youLost.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = youLost.png; sourceTree = "<group>"; };
 		70C362EE1A9855CA00E0626D /* GameOver.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = GameOver.wav; sourceTree = "<group>"; };
-		70D7EC181A94FF5A00DC70EC /* MultiplayerButtonG.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = MultiplayerButtonG.png; sourceTree = "<group>"; };
-		70D7EC1A1A94FF5E00DC70EC /* playButtonG.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = playButtonG.png; sourceTree = "<group>"; };
 		70D7EC1F1A95004400DC70EC /* BubbleMenuButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BubbleMenuButton.swift; sourceTree = "<group>"; };
 		70D7EC201A95004400DC70EC /* FirstScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FirstScene.swift; sourceTree = "<group>"; };
 		70D7EC211A95004400DC70EC /* WhoScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WhoScene.swift; sourceTree = "<group>"; };
@@ -115,6 +108,9 @@
 		70D7EC2B1A95028A00DC70EC /* SKTAudio.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SKTAudio.swift; sourceTree = "<group>"; };
 		70D7EC2E1A9533BC00DC70EC /* whiteBikeSong1.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = whiteBikeSong1.mp3; sourceTree = "<group>"; };
 		70D7EC301A9533C200DC70EC /* butterflySound.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = butterflySound.m4a; sourceTree = "<group>"; };
+		70D8BC5B1A9A8B8200ABA074 /* won_image.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = won_image.png; sourceTree = "<group>"; };
+		70D8BC5D1A9A951400ABA074 /* iAd.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = iAd.framework; path = System/Library/Frameworks/iAd.framework; sourceTree = SDKROOT; };
+		70D8BC5F1A9A96B100ABA074 /* Global_iAd.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Global_iAd.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -122,6 +118,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				70D8BC5E1A9A951400ABA074 /* iAd.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -138,6 +135,7 @@
 		7090D5911A8BE98C00E8AA7C = {
 			isa = PBXGroup;
 			children = (
+				70D8BC5D1A9A951400ABA074 /* iAd.framework */,
 				7090D59C1A8BE98D00E8AA7C /* WhiteBikeAngel */,
 				7090D5B61A8BE98D00E8AA7C /* WhiteBikeAngelTests */,
 				7090D59B1A8BE98D00E8AA7C /* Products */,
@@ -158,6 +156,7 @@
 			children = (
 				70D7EC2B1A95028A00DC70EC /* SKTAudio.swift */,
 				70C362E81A98363100E0626D /* HighScore.swift */,
+				70D8BC5F1A9A96B100ABA074 /* Global_iAd.swift */,
 				70D7EC1E1A95003300DC70EC /* MenuFile */,
 				7090D59F1A8BE98D00E8AA7C /* AppDelegate.swift */,
 				70B2D3321A9428B4007DDBE5 /* WBAMainMenu.swift */,
@@ -180,7 +179,6 @@
 				70D7EC2D1A9533AC00DC70EC /* Sounds */,
 				7090D5E91A8BEA8B00E8AA7C /* ART */,
 				7090D5C51A8BEA0A00E8AA7C /* bike.atlas */,
-				7090D5C31A8BE9FE00E8AA7C /* whitebikeMenu.atlas */,
 				7090D59E1A8BE98D00E8AA7C /* Info.plist */,
 			);
 			name = "Supporting Files";
@@ -206,12 +204,9 @@
 		7090D5E91A8BEA8B00E8AA7C /* ART */ = {
 			isa = PBXGroup;
 			children = (
+				70D8BC5B1A9A8B8200ABA074 /* won_image.png */,
 				70C362EC1A9853F000E0626D /* youLost.png */,
-				70C362EA1A984EC200E0626D /* youWon.png */,
 				70C362E41A97A06900E0626D /* blackSky.png */,
-				70D7EC1A1A94FF5E00DC70EC /* playButtonG.png */,
-				70D7EC181A94FF5A00DC70EC /* MultiplayerButtonG.png */,
-				70B2D34C1A94618D007DDBE5 /* MultiplayerButton.png */,
 				70B2D34A1A946185007DDBE5 /* playButton.png */,
 				70B2D3341A943A62007DDBE5 /* WhiteBikemenu.png */,
 				7090D5C71A8BEA3800E8AA7C /* Bike1.png */,
@@ -342,13 +337,11 @@
 				7090D5D91A8BEA3800E8AA7C /* Bike2.png in Resources */,
 				7090D5AE1A8BE98D00E8AA7C /* LaunchScreen.xib in Resources */,
 				7090D5AB1A8BE98D00E8AA7C /* Images.xcassets in Resources */,
-				70C362EB1A984EC200E0626D /* youWon.png in Resources */,
 				7090D5DE1A8BEA3800E8AA7C /* spark.png in Resources */,
 				70D7EC2F1A9533BC00DC70EC /* whiteBikeSong1.mp3 in Resources */,
 				7090D5D81A8BEA3800E8AA7C /* Bike1.png in Resources */,
 				7090D5DC1A8BEA3800E8AA7C /* foregroundFog.png in Resources */,
 				70C362ED1A9853F000E0626D /* youLost.png in Resources */,
-				70D7EC191A94FF5A00DC70EC /* MultiplayerButtonG.png in Resources */,
 				70B2D3351A943A62007DDBE5 /* WhiteBikemenu.png in Resources */,
 				7090D5A91A8BE98D00E8AA7C /* Main.storyboard in Resources */,
 				70D7EC2A1A95026D00DC70EC /* pop.wav in Resources */,
@@ -356,16 +349,14 @@
 				7090D5E11A8BEA3800E8AA7C /* HowMore.png in Resources */,
 				7090D5DF1A8BEA3800E8AA7C /* puff.sks in Resources */,
 				7090D5DB1A8BEA3800E8AA7C /* Bike4.png in Resources */,
+				70D8BC5C1A9A8B8200ABA074 /* won_image.png in Resources */,
 				7090D5E31A8BEA3800E8AA7C /* bottle.png in Resources */,
-				70B2D34D1A94618D007DDBE5 /* MultiplayerButton.png in Resources */,
 				7090D5E81A8BEA3800E8AA7C /* bgMenu.png in Resources */,
 				70C362EF1A9855CA00E0626D /* GameOver.wav in Resources */,
 				70C362E51A97A06900E0626D /* blackSky.png in Resources */,
 				7090D5DA1A8BEA3800E8AA7C /* Bike3.png in Resources */,
 				7090D5E71A8BEA3800E8AA7C /* background3.png in Resources */,
-				7090D5C41A8BE9FE00E8AA7C /* whitebikeMenu.atlas in Resources */,
 				70B2D34B1A946185007DDBE5 /* playButton.png in Resources */,
-				70D7EC1B1A94FF5E00DC70EC /* playButtonG.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -393,6 +384,7 @@
 				70D7EC241A95004400DC70EC /* BubbleMenuButton.swift in Sources */,
 				70C362E91A98363100E0626D /* HighScore.swift in Sources */,
 				70C362E71A98360700E0626D /* GameOverScene.swift in Sources */,
+				70D8BC601A9A96B100ABA074 /* Global_iAd.swift in Sources */,
 				70B2D34F1A946382007DDBE5 /* HowToScene.swift in Sources */,
 				70D7EC2C1A95028A00DC70EC /* SKTAudio.swift in Sources */,
 				7090D5A01A8BE98D00E8AA7C /* AppDelegate.swift in Sources */,

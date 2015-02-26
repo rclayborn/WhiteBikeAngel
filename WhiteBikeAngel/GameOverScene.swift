@@ -51,7 +51,7 @@ class GameOverScene: SKScene {
         var retrievedHighScore = SaveHighScore().RetrieveHighScore() as HighScore
         println(retrievedHighScore.highScore)
             
-        background = SKSpriteNode(imageNamed: "youWon.png")
+        background = SKSpriteNode(imageNamed: "won_image.png")
         background.position = CGPoint(x: self.size.width * 0.5, y: self.size.height * 0.46)
         self.addChild(background)
             
@@ -74,7 +74,7 @@ class GameOverScene: SKScene {
       else  if (won == false) {
             runAction(GameOverSound)
         
-            background2 = SKSpriteNode(imageNamed: "YouLost.png")
+            background2 = SKSpriteNode(imageNamed: "youLost.png")
             background2.position = CGPoint(x: self.size.width * 0.5, y: self.size.height * 0.5)
             if UIDevice.currentDevice().userInterfaceIdiom == .Phone {
                 background2.yScale = 0.75
@@ -91,12 +91,11 @@ class GameOverScene: SKScene {
         }
             self.runAction(SKAction.sequence([wait, block]))
         }
-        
-        
     }
+    
    override func update(currentTime: CFTimeInterval) {
     
-        highScoreLabel.text = "\(self.highScore) more day!"
+        highScoreLabel.text = "\(self.highScore)"
 
     }
     

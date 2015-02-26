@@ -29,7 +29,7 @@ class HowToScene: SKScene {
         backButton.fontColor = SKColor.whiteColor()
         backButton.text = "Tap to PLAY"
         backButton.alpha = 0.5
-        backButton.position = CGPointMake(self.size.width * 0.5, self.size.height * 0.17)
+        backButton.position = CGPointMake(self.size.width * 0.5, self.size.height * 0.22)
         self.addChild(backButton)
         
         let appear = SKAction.scaleTo(1.0, duration: 0.2)
@@ -47,7 +47,6 @@ class HowToScene: SKScene {
         let removeFromParent = SKAction.removeFromParent()
         let actions = [appear, groupWait, disappear, removeFromParent]
         backButton.runAction(SKAction.sequence(actions))
-
     }
     
     override func touchesBegan(touches: NSSet, withEvent event: UIEvent) {
@@ -76,6 +75,4 @@ class HowToScene: SKScene {
         
     }
     
-    
-
 }

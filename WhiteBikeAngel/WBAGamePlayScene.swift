@@ -25,11 +25,9 @@ let dummyCategory: UInt32 = 0x1 << 8
 let skullCategory: UInt32 = 0x1 << 16
 let baseCategory: UInt32 = 0x1 << 24
 
-
  class WBAGamePlayScene: SKScene, SKPhysicsContactDelegate {
     
     var score = CGFloat()
-    //var animation = SKAction()
     var health = Double()
     var maxHealth = Float()
     let healthMeterLabel = SKLabelNode(fontNamed:"Arial")
@@ -42,13 +40,9 @@ let baseCategory: UInt32 = 0x1 << 24
     let textureAtlas = SKTextureAtlas(named: "bike.atlas")
     var spriteArray = Array<SKTexture>()
 
-    //var flightAnimation = SKAction()
     var inflight = Bool()
-    //var road = SKSpriteNode()
-    var inPlay = Bool()
     var forgroundFog = SKSpriteNode()
     
-    //var dt = NSTimeInterval()
     var velocity = CGPoint()
     var gameOver = Bool()
     var scoreLabel = SKLabelNode()
@@ -62,7 +56,6 @@ let baseCategory: UInt32 = 0x1 << 24
     let car = SKSpriteNode()
     let bottle = SKSpriteNode()
     
-    //let spawnAction = SKAction.self()//setspawnAction.
     let playableRect: CGRect
     
     var levelTimeLimit = 0.0
@@ -100,7 +93,6 @@ let baseCategory: UInt32 = 0x1 << 24
         }
         
     override func didMoveToView(view: SKView) {
-        /* Setup your scene here */
         backgroundColor = SKColor.blackColor()
         self.paused = false
         self.physicsWorld.contactDelegate = self
@@ -111,11 +103,11 @@ let baseCategory: UInt32 = 0x1 << 24
         damageTakenPerShot = 12
         gameOver = true
         inflight = true
-        inPlay = false
+       // inPlay = false
         levelTimeLimit = 60
         
         //Setup physic
-        self.physicsWorld.gravity = CGVectorMake(0.0, -2.0);
+        self.physicsWorld.gravity = CGVectorMake(0.0, -2.5);
         
         //create Begin Label to start spawning and timer.
         beginLabel = SKLabelNode(fontNamed: "CopperPlate")
@@ -187,7 +179,7 @@ let baseCategory: UInt32 = 0x1 << 24
     
     func beginButton() {
         
-        inPlay = true
+       // inPlay = true
         beginLabel.setScale(0.0)
         startTime = currentTime
         beginGamePlay()
@@ -202,7 +194,6 @@ let baseCategory: UInt32 = 0x1 << 24
         var run = SKAction.runBlock {
             self.spawnEnemy()
   }
-        self.runAction(SKAction.sequence([wait, run]))
         self.runAction(SKAction.repeatActionForever(SKAction.sequence([wait, run])),withKey: "spawnEnemy")//with key
         
         //spawn WaterBottle.
@@ -210,16 +201,13 @@ let baseCategory: UInt32 = 0x1 << 24
         var runBottle = SKAction.runBlock {
             self.spawnWaterBottle()
         }
-        self.runAction(SKAction.sequence([waitBottle, runBottle]))
         self.runAction(SKAction.repeatActionForever(SKAction.sequence([waitBottle, runBottle])),withKey: "spawnWaterBottle")
         
         //Spawn Skull
         var waitSkull = SKAction.waitForDuration(3.0)
         var runSkull = SKAction.runBlock {
-            //code here to spawn or add method
             self.spawnSkull()
         }
-        self.runAction(SKAction.sequence([waitSkull, runSkull]))
         self.runAction(SKAction.repeatActionForever(SKAction.sequence([waitSkull, runSkull])),withKey: "spawnSkull")
     }
     
@@ -269,14 +257,16 @@ let baseCategory: UInt32 = 0x1 << 24
     }
     
         func playerHitCar() {
-           //take off lives here.
+           //take off lifes/health points here.
             println("player Hit Car")
             health -= 10
         }
         
         func playerHitBottle() {
-            //self.bottle.removeFromParent()
-            //add points or seconds.
+            self.bottle.xScale = 0
+            self.bottle.yScale = 0
+
+            //add + or - health.
             println("player Hit Bottle")
             if health >= 100 {
                  self.bottle.removeFromParent()
@@ -323,6 +313,7 @@ let baseCategory: UInt32 = 0x1 << 24
     }
     
     override func didEvaluateActions()   {
+        //This method keeps player in playable area.
     boundsCheckPlayer()
         
     }
@@ -338,8 +329,9 @@ let baseCategory: UInt32 = 0x1 << 24
         
         car.physicsBody = SKPhysicsBody(rectangleOfSize: CGSizeMake(600, 200))
         car.physicsBody?.dynamic = true
-        car.physicsBody?.restitution = 0.4
+        car.physicsBody?.restitution = 1.5
         car.physicsBody?.friction = 0.5
+        car.physicsBody?.mass = 1000
         car.physicsBody?.categoryBitMask = carCategory
         car.physicsBody?.collisionBitMask = playerCategory | skullCategory | baseCategory
         self.addChild(car)
@@ -364,7 +356,7 @@ let baseCategory: UInt32 = 0x1 << 24
         skull.physicsBody = SKPhysicsBody(circleOfRadius: 150)
         skull.physicsBody?.dynamic = true
         skull.physicsBody?.allowsRotation = true
-        skull.physicsBody?.restitution = 1.0
+        skull.physicsBody?.restitution = 1.3
         skull.physicsBody?.categoryBitMask = skullCategory
         skull.physicsBody?.collisionBitMask = carCategory | playerCategory | baseCategory
         self.addChild(skull)
@@ -392,7 +384,7 @@ func createRoad() {
             let touchLocation = touch.locationInNode(self)
             if (CGRectContainsPoint(frame, touchLocation)) {
             player.physicsBody?.velocity = CGVectorMake(0, 0)
-            player.physicsBody?.applyImpulse(CGVectorMake(0, 270))
+            player.physicsBody?.applyImpulse(CGVectorMake(-10, 270))
             if (gameOver == true) {
                 beginButton()
             } else{
@@ -427,7 +419,7 @@ func createRoad() {
     }
     
     override func update(currentTime: CFTimeInterval) {
-        //timer from ios tutorial...
+        //setting up timer.
         self.currentTime = currentTime
         elapsedTime = currentTime - startTime
         var timeRemaining = levelTimeLimit - elapsedTime
@@ -436,7 +428,7 @@ func createRoad() {
                      timeLabel.text = NSString(format: "Time: %2.2f", timeRemaining)
             }
                 if elapsedTime <= levelTimeLimit && timeRemaining <= 1 {
-                        winMenu()
+                    winMenu()
                     println("time is out")
             }
                 if score >= 0 {
@@ -452,44 +444,30 @@ func createRoad() {
                     //Stop music
                     println("you lost")
             }
-        
         // update the color so that the closer to 0 it gets the more red it becomes
         healthMeterLabel.fontColor = SKColor(red: CGFloat(2.0 * (1 - self.health / 100)), green: CGFloat(2.0 * self.health / 100), blue: 0, alpha: 1)
         
         // Calculate the length of the players health bar.
         healthBarLength = Double(healthMeterText.length) * self.health / 100.0;
         healthMeterLabel.text = healthMeterText.substringToIndex(Int(healthBarLength))
-        
-        // If the player health reaches 0 then change the game state.
-        if self.health <= 0 {
-            //println("gameover")
-            gameOver = true
-        }
     }
     
     func gameOverMenu() {
-//        self.enumerateChildNodesWithName("Skull", usingBlock: {
-//    node, stop in
-//        node.removeFromParent()
-//    })
+        self.enumerateChildNodesWithName("Skull", usingBlock: {
+    node, stop in
+        node.removeFromParent()
+    })
 //        player.removeFromParent()
-//        car.removeFromParent()
-//        bottle.removeFromParent()
+       car.removeFromParent()
+       bottle.removeFromParent()
 //        levelTimeLimit = 0.0
 //        timeLabel.removeFromParent()
 //        currentTime = 0.0
 //        startTime = 0.0
 //        elapsedTime = 0.0
 //        
-//        car.removeActionForKey("spawnEnemy")
-//       
-//        player.removeActionForKey("car")
-//        bottle.removeActionForKey("spawnWaterBottle")
-        
-        //self.removeAllChildren()
-        //self.removeAllActions()
-        
-        //turn music off.
+        car.removeActionForKey("spawnEnemy")
+        bottle.removeActionForKey("spawnWaterBottle")
         health = 0
         
         let wait = SKAction.waitForDuration(0.1)
@@ -501,23 +479,16 @@ func createRoad() {
         }
         let sequence = SKAction.sequence([block, wait])
         self.runAction(sequence)
-        
-
-        
     }
     
     func winMenu() {
-//        self.enumerateChildNodesWithName("Skull", usingBlock: {
-//        node, stop in
-//        node.removeFromParent()
-//        })
-//        player.removeFromParent()
-//        car.removeFromParent()
-//        bottle.removeFromParent()
-//        self.removeAllChildren()
-        
-        
-        println("Winner!")
+        self.enumerateChildNodesWithName("Skull", usingBlock: {
+        node, stop in
+        node.removeFromParent()
+        })
+        car.removeFromParent()
+        bottle.removeFromParent()
+        //println("Winner!")
         let wait = SKAction.waitForDuration(0.1)
         let block = SKAction.runBlock {
             let transition = SKTransition.flipHorizontalWithDuration(1.0)
@@ -562,7 +533,7 @@ func createRoad() {
             player.physicsBody?.dynamic = true
             player.physicsBody?.allowsRotation = false
             player.physicsBody?.affectedByGravity = true
-            player.physicsBody?.restitution = 0.6;
+            player.physicsBody?.restitution = 0.8;
             player.physicsBody?.categoryBitMask = playerCategory
             player.physicsBody?.collisionBitMask = carCategory | dummyCategory
             player.physicsBody?.contactTestBitMask = carCategory | roadCategory | waterBottleCategory

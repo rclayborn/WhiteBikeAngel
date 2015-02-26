@@ -16,6 +16,7 @@ class WhyScene: SKScene {
     var line3A = SKLabelNode()
     var line4 = SKLabelNode()
     var line5 = SKLabelNode()
+    var line6 = SKLabelNode()
     
     override func didMoveToView(view: SKView) {
          let π = CGFloat(M_PI)
@@ -91,8 +92,8 @@ class WhyScene: SKScene {
         line5.alpha = 0.7
         addChild(line5)
         
-        let line6 = SKLabelNode(fontNamed: "Arial-BoldMT")
-        line6.text = "ENJOY!"
+        line6 = SKLabelNode(fontNamed: "Arial-BoldMT")
+        line6.text = "GameCenter!"
         line6.position = CGPointMake(self.size.width * 0.5, self.size.height * 0.75 - 475)
         line6.fontSize = 100
         line6.alpha = 0.8
@@ -136,6 +137,11 @@ class WhyScene: SKScene {
               //  self.runAction(popSound)
                  UIApplication.sharedApplication().openURL(NSURL(string: "https://itunes.apple.com/us/artist/randall-clayborn/id704631046")!)
             }
+            if (CGRectContainsPoint(line6.frame, touchLocation)) {
+                //  self.runAction(popSound)
+                println("call game Center")
+            }
+
         }
     }
 

@@ -9,8 +9,9 @@
 import UIKit
 import SpriteKit
 import Social
+import iAd
 
-class GameViewController: UIViewController {
+class GameViewController: UIViewController,  ADBannerViewDelegate{
     
     override func viewDidLoad() {
     let scene = WBAMainMenu(size:CGSize(width: 2048, height: 1536))
@@ -23,6 +24,8 @@ class GameViewController: UIViewController {
     skView.presentScene(scene)
         
          super.viewDidLoad()
+        //display iAd at bottom of scene.
+        moveADBannerToViewController(self, atPosition: .Bottom)
         
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "showTweetSheet", name: "CallTheNotification", object: nil)
         
@@ -30,8 +33,6 @@ class GameViewController: UIViewController {
     }
     
     override func viewDidAppear(animated: Bool) {
-        
-        
         // Create down menu button
         var homeLabel = self.createHomeButtonView()
         
@@ -76,7 +77,6 @@ class GameViewController: UIViewController {
             buttons.append(button)
         }
         return buttons
-        
     }
     
     func createButtonWithName(imageName:NSString) -> UIButton {
@@ -205,7 +205,6 @@ class GameViewController: UIViewController {
             //Optional completion statement
         })
     }
-
 
     override func shouldAutorotate() -> Bool {
         return true
