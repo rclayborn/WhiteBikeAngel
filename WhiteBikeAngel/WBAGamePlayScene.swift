@@ -14,7 +14,7 @@ import iAd
 extension CGFloat {
     static func random() -> CGFloat {
     return CGFloat(Float(arc4random()) / Float(UInt32.max)) }
-    static func random(#min: CGFloat, max: CGFloat) -> CGFloat { assert(min < max)
+    static func random(min: CGFloat, max: CGFloat) -> CGFloat { assert(min < max)
     return CGFloat.random() * (max - min) + min
     }
 }
@@ -135,21 +135,21 @@ let baseCategory: UInt32 = 0x1 << 24
         healthMeterLabel.name = "healthMeter";
         healthMeterLabel.fontSize = 30
         healthMeterLabel.fontColor = SKColor.whiteColor()
-        healthMeterLabel.text = healthMeterText;
+        healthMeterLabel.text = healthMeterText as String;
         healthMeterLabel.position = CGPointMake(CGRectGetMidX(self.frame), self.size.height-250);
         healthMeterLabel.alpha = 0.4;
         healthMeterLabel.zPosition = 900
         self.addChild(healthMeterLabel)
         
-        var groundTexture = SKTexture(imageNamed: "blackSky")
+        let groundTexture = SKTexture(imageNamed: "blackSky")
         groundTexture.filteringMode = SKTextureFilteringMode.Nearest
        
-        var moveBg = SKAction.moveByX(-groundTexture.size().width, y: 0, duration: NSTimeInterval(0.01 * groundTexture.size().width))
-        var resetGroundSprite = SKAction.moveByX(groundTexture.size().width, y: 0, duration: 0.0)
-        var moveGroundSpriteForever = SKAction.repeatActionForever(SKAction.sequence([moveBg, resetGroundSprite]))
+        let moveBg = SKAction.moveByX(-groundTexture.size().width, y: 0, duration: NSTimeInterval(0.01 * groundTexture.size().width))
+        let resetGroundSprite = SKAction.moveByX(groundTexture.size().width, y: 0, duration: 0.0)
+        let moveGroundSpriteForever = SKAction.repeatActionForever(SKAction.sequence([moveBg, resetGroundSprite]))
         
         for var i:CGFloat = 0; i<2 + self.frame.size.width / (groundTexture.size().width); ++i {
-            var sprite = SKSpriteNode(texture: groundTexture)
+            let sprite = SKSpriteNode(texture: groundTexture)
             sprite.position = CGPointMake(i * sprite.size.width, sprite.size.height / 2)
             sprite.runAction(moveGroundSpriteForever)
             sprite.zPosition = -1
@@ -157,7 +157,7 @@ let baseCategory: UInt32 = 0x1 << 24
             self.addChild(sprite)
         }
         //this method helps keep player in playble area on scene.un-commnet debug to see it.
-        var dummy = SKNode()
+        let dummy = SKNode()
         dummy.position = CGPointMake(self.size.width * 0.0, self.size.height * 0.0)
         dummy.physicsBody = SKPhysicsBody(edgeLoopFromRect: playableRect)
         dummy.physicsBody?.restitution = 0.5
@@ -165,7 +165,7 @@ let baseCategory: UInt32 = 0x1 << 24
         dummy.physicsBody?.collisionBitMask = playerCategory
         self.addChild(dummy)
 
-        var base = SKNode()//this is the road base for the car and skull.
+        let base = SKNode()//this is the road base for the car and skull.
         base.position = CGPointMake(self.size.width * 0.0, self.size.height * 0.0)
         base.physicsBody = SKPhysicsBody(edgeFromPoint: CGPoint(x: 0,y: 220), toPoint: CGPoint(x: 2500,y: 220))
         base.physicsBody?.restitution = 0.6
@@ -190,22 +190,22 @@ let baseCategory: UInt32 = 0x1 << 24
         SKTAudio.sharedInstance().playBackgroundMusic("whiteBikeSong1.mp3")
         
         //spawn Enemy.
-        var wait = SKAction.waitForDuration(2.5)
-        var run = SKAction.runBlock {
+        let wait = SKAction.waitForDuration(2.5)
+        let run = SKAction.runBlock {
             self.spawnEnemy()
   }
         self.runAction(SKAction.repeatActionForever(SKAction.sequence([wait, run])),withKey: "spawnEnemy")//with key
         
         //spawn WaterBottle.
-        var waitBottle = SKAction.waitForDuration(6.0)
-        var runBottle = SKAction.runBlock {
+        let waitBottle = SKAction.waitForDuration(6.0)
+        let runBottle = SKAction.runBlock {
             self.spawnWaterBottle()
         }
         self.runAction(SKAction.repeatActionForever(SKAction.sequence([waitBottle, runBottle])),withKey: "spawnWaterBottle")
         
         //Spawn Skull
-        var waitSkull = SKAction.waitForDuration(3.0)
-        var runSkull = SKAction.runBlock {
+        let waitSkull = SKAction.waitForDuration(3.0)
+        let runSkull = SKAction.runBlock {
             self.spawnSkull()
         }
         self.runAction(SKAction.repeatActionForever(SKAction.sequence([waitSkull, runSkull])),withKey: "spawnSkull")
@@ -234,7 +234,7 @@ let baseCategory: UInt32 = 0x1 << 24
     func spawnWaterBottle() {
         // create bottle.
         //println("waterBottle has been spawned")
-        var bottle = SKSpriteNode(imageNamed: "bottle")
+        let bottle = SKSpriteNode(imageNamed: "bottle")
         bottle.position = CGPointMake(self.size.width * 0.095, self.size.height * 0.82)
         bottle.xScale = 1.0
         bottle.yScale = 1.0
@@ -368,7 +368,7 @@ let baseCategory: UInt32 = 0x1 << 24
     
 func createRoad() {
         //creating a empty node so we know when the bike touches the ground for scoring.
-        var dummyRoadNode = SKNode()
+        let dummyRoadNode = SKNode()
         dummyRoadNode.position = CGPointMake(self.size.width * 0.5, self.size.height * 0.15)
         dummyRoadNode.zPosition = -10
         dummyRoadNode.physicsBody = SKPhysicsBody(rectangleOfSize: CGSizeMake(self.frame.width, 200))
@@ -431,7 +431,7 @@ func createRoad() {
         var timeRemaining = levelTimeLimit - elapsedTime
                    
                 if timeRemaining >= 0 {
-                     timeLabel.text = NSString(format: "Time: %2.2f", timeRemaining)
+                     timeLabel.text = NSString(format: "Time: %2.2f", timeRemaining) as String
             }
                 if elapsedTime <= levelTimeLimit && timeRemaining <= 1 {
                     winMenu()
@@ -491,9 +491,9 @@ func createRoad() {
         
         let localPlayer: GKLocalPlayer = GKLocalPlayer.localPlayer()
         
-        GKScore.reportScores([sScore], withCompletionHandler: { (error: NSError!) -> Void in
+        GKScore.reportScores([sScore], withCompletionHandler: { (error: NSError?) -> Void in
             if error != nil {
-                println(error.localizedDescription)
+                print(error.localizedDescription)
             } else {
                 //println("Score submitted")
             }

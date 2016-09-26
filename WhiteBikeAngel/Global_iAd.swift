@@ -29,13 +29,13 @@ public func moveADBannerToViewController(viewController: UIViewController, atPos
     let verticalFormat = (position == .Top) ? "V:|-(\(margin))-[banner]" : "V:[banner]-(\(margin))-|"
     let verticalConstraints = NSLayoutConstraint.constraintsWithVisualFormat(
         verticalFormat,
-        options: NSLayoutFormatOptions.allZeros,
+        options: NSLayoutFormatOptions(),
         metrics: nil,
         views: visualDictionary)
     
     let horizontalConstraints = NSLayoutConstraint.constraintsWithVisualFormat(
         "|-0-[banner]-0-|",
-        options: NSLayoutFormatOptions.allZeros,
+        options: NSLayoutFormatOptions(),
         metrics: nil,
         views: visualDictionary)
     
@@ -45,7 +45,7 @@ public func moveADBannerToViewController(viewController: UIViewController, atPos
 // The banner singleton
 private let sharedADBannerView: ADBannerView = {
     let b = ADBannerView(adType: ADAdType.Banner)
-    b.setTranslatesAutoresizingMaskIntoConstraints(false)
+    b.translatesAutoresizingMaskIntoConstraints = false
     b.hidden = true
     b.delegate = b
     return b

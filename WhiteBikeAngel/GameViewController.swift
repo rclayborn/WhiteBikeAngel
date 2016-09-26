@@ -21,7 +21,7 @@ class GameViewController: UIViewController,  ADBannerViewDelegate, GKGameCenterC
           self.authenticateLocalPlayer()
         
     let scene = WBAMainMenu(size:CGSize(width: 2048, height: 1536))
-    let skView = self.view as SKView
+    let skView = self.view as! SKView
     //skView.showsFPS = true
     //skView.showsPhysics = true
     //skView.showsNodeCount = true
@@ -49,9 +49,9 @@ class GameViewController: UIViewController,  ADBannerViewDelegate, GKGameCenterC
                 self.gcEnabled = true
                 
                 // Get the default leaderboard ID
-                localPlayer.loadDefaultLeaderboardIdentifierWithCompletionHandler({ (leaderboardIdentifer: String!, error: NSError!) -> Void in
+                localPlayer.loadDefaultLeaderboardIdentifierWithCompletionHandler({ (leaderboardIdentifer: String?, error: NSError?) -> Void in
                     if error != nil {
-                        println(error)
+                        print(error)
                     } else {
                         self.gcDefaultLeaderBoard = leaderboardIdentifer
                     }
@@ -59,19 +59,19 @@ class GameViewController: UIViewController,  ADBannerViewDelegate, GKGameCenterC
                 
             } else {
                 self.gcEnabled = false
-                println("Local player could not be authenticated, disabling game center")
-                println(error)
+                print("Local player could not be authenticated, disabling game center")
+                print(error)
             }
         }
     }
     
-    func gameCenterViewControllerDidFinish(gameCenterViewController: GKGameCenterViewController!) {
+    func gameCenterViewControllerDidFinish(gameCenterViewController: GKGameCenterViewController) {
         
         gameCenterViewController.dismissViewControllerAnimated(true, completion: nil)
     }
     
     func showLeaderboard() {
-        var gcVC: GKGameCenterViewController = GKGameCenterViewController()
+        let gcVC: GKGameCenterViewController = GKGameCenterViewController()
         gcVC.gameCenterDelegate = self
         gcVC.viewState = GKGameCenterViewControllerState.Leaderboards
         gcVC.leaderboardIdentifier = "WBA_Leader_board"
@@ -81,9 +81,9 @@ class GameViewController: UIViewController,  ADBannerViewDelegate, GKGameCenterC
     
     override func viewDidAppear(animated: Bool) {
         // Create down menu button
-        var homeLabel = self.createHomeButtonView()
+        let homeLabel = self.createHomeButtonView()
         
-        var downMenuButton = BubbleMenuButton(frame: CGRectMake(20.0,
+        let downMenuButton = BubbleMenuButton(frame: CGRectMake(20.0,
             20.0,
             homeLabel.frame.size.width,
             homeLabel.frame.size.height), expansionDirection: ExpansionDirection.DirectionDown)
@@ -94,7 +94,7 @@ class GameViewController: UIViewController,  ADBannerViewDelegate, GKGameCenterC
     
     func createHomeButtonView() -> UILabel {
         
-        var label = UILabel(frame: CGRectMake(0.0, 0.0, 40.0, 40.0))
+        let label = UILabel(frame: CGRectMake(0.0, 0.0, 40.0, 40.0))
         
         label.text = "Tap";
         label.textColor = UIColor.whiteColor()
@@ -110,7 +110,7 @@ class GameViewController: UIViewController,  ADBannerViewDelegate, GKGameCenterC
         var buttons:[UIButton]=[]
         var i = 0
         for str in ["Play","CG","HOW","ETC"] {
-            var button:UIButton = UIButton.buttonWithType(UIButtonType.System) as UIButton
+            let button:UIButton = UIButton.buttonWithType(UIButtonType.System) as UIButton
             button.setTitleColor(UIColor.whiteColor(), forState: UIControlState.Normal)
             button.setTitle(str, forState: UIControlState.Normal)
             
@@ -128,7 +128,7 @@ class GameViewController: UIViewController,  ADBannerViewDelegate, GKGameCenterC
     func createButtonWithName(imageName:NSString) -> UIButton {
         var button = UIButton()
         
-        button.setImage(UIImage(named: imageName), forState: UIControlState.Normal)
+        button.setImage(UIImage(named: imageName as String), forState: UIControlState.Normal)
         button.sizeToFit()
         button.addTarget(self, action: Selector("buttonTap:"), forControlEvents: UIControlEvents.TouchUpInside)
         
@@ -141,7 +141,7 @@ class GameViewController: UIViewController,  ADBannerViewDelegate, GKGameCenterC
         if sender.tag == 0 {
             let scene = WBAGamePlayScene(size: CGSize(width: 2048, height: 1536))
             // Configure the view.
-            let skView = self.view as SKView
+            let skView = self.view as! SKView
             // skView.showsFPS = true
             //skView.showsNodeCount = true
             /* Sprite Kit applies additional optimizations to improve rendering performance */
@@ -156,7 +156,7 @@ class GameViewController: UIViewController,  ADBannerViewDelegate, GKGameCenterC
         if sender.tag == 2 {
             let scene = WhatScene(size: CGSize(width: 2048, height: 1536))
             // Configure the view.
-            let skView = self.view as SKView
+            let skView = self.view as! SKView
             //skView.showsFPS = true
             //skView.showsNodeCount = true
             skView.ignoresSiblingOrder = true
@@ -167,7 +167,7 @@ class GameViewController: UIViewController,  ADBannerViewDelegate, GKGameCenterC
         if sender.tag == 3 {
             let scene = WhyScene(size: CGSize(width: 2048, height: 1536))
             // Configure the view.
-            let skView = self.view as SKView
+            let skView = self.view as! SKView
             //skView.showsFPS = true
             //skView.showsNodeCount = true
             skView.ignoresSiblingOrder = true
@@ -231,8 +231,8 @@ class GameViewController: UIViewController,  ADBannerViewDelegate, GKGameCenterC
         return true
     }
 
-  override func supportedInterfaceOrientations() -> Int {
-            return Int(UIInterfaceOrientationMask.LandscapeLeft.rawValue)
+  override func supportedInterfaceOrientations() -> UIInterfaceOrientationMask {
+            return UIInterfaceOrientationMask.LandscapeLeft
         }
 
     override func didReceiveMemoryWarning() {
